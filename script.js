@@ -2,7 +2,7 @@ const mainContainer = document.querySelector(".main-container");
 const resolution = 32; //Change to max it an resolution x resolution sized board
 
 
-mainContainer.style.cssText = "border-style: solid; display:inline-flex; flex-direction: column";
+mainContainer.style.cssText = "border-style: solid; display:inline-flex; flex-direction: column; align-items: centre";
 
 for (let i = 0; i < resolution; i++){
     const row = document.createElement('div');
@@ -22,5 +22,12 @@ for (let i = 0; i < resolution; i++){
     mainContainer.appendChild(row);
 }
 
-const pixels = document.querySelectorAll(".box");
+const resetButton = document.querySelector(".reset");
+const pixels = document.getElementsByClassName('box');
+
+resetButton.addEventListener('click', () => {
+    for(let i = 0; i < pixels.length; i++){
+        pixels[i].style.backgroundColor = "white";
+    }
+});
 
