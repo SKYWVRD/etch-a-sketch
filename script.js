@@ -1,7 +1,7 @@
 const mainContainer = document.querySelector(".main-container");
 
 
-mainContainer.style.cssText = "border-style: solid; display:flex; flex-direction: column;"
+mainContainer.style.cssText = "border-style: solid; display:inline-flex; flex-direction: column"
 
 for (let i = 0; i < 16; i++){
     const row = document.createElement('div');
@@ -10,7 +10,7 @@ for (let i = 0; i < 16; i++){
 
     for ( let j = 0; j < 16; j++ ){
         const box = document.createElement('div');
-        box.textContent = `Column ${j}`;
+        box.style.cssText = "border-style: solid; height: 10px; width: 10px;"
         row.appendChild(box);
     }
 
