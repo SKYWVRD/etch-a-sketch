@@ -1,11 +1,12 @@
 const mainContainer = document.querySelector(".main-container");
-//const resolution = 64; //Change to max it an resolution x resolution sized board
+const resetButton = document.querySelector(".reset");
+const resizeButton = document.querySelector(".resize")
 
 buildBoard(64);
-
-
 mainContainer.style.cssText = "border-style: solid; display:inline-flex; flex-direction: column;";
 
+
+//Function to build grid using javascript
 function buildBoard(resolution){
     for (let i = 0; i < resolution; i++){
         const row = document.createElement('div');
@@ -25,39 +26,43 @@ function buildBoard(resolution){
         mainContainer.appendChild(row);
     }
 };
+
+//Function to assist in resizing the board when button clicked
+function resizeBoard(newResolution) {
+    let child = mainContainer.lastElementChild;
+    while (child) {
+        mainContainer.removeChild(child);
+        child = mainContainer.lastElementChild;
+    }
+    buildBoard(newResolution);
+};
     
-
-
-
-const resetButton = document.querySelector(".reset");
-const resizeButton = document.querySelector(".resize")
 const pixels = document.getElementsByClassName('box');
 
 
+//Section for button even listeners
 
+//Event Listener to reset grid to all white
 resetButton.addEventListener('click', () => {
     for(let i = 0; i < pixels.length; i++){
         pixels[i].style.backgroundColor = "white";
     }
 });
 
+
+//Event listener to prompt board resize
 resizeButton.addEventListener('click', () => {
-    let valid_choice = false;
-    let new_res = 0
-    while(!valid_choice){
-        new_res = prompt("What resolution do you want?");
-        if(new_res > 0 && new_res <= 100){
-            valid_choice = true;
+    let validChoice = false;
+    let newRes = 0
+    while(!validChoice){
+        newRes = prompt("What resolution do you want?");
+        if(newRes > 0 && newRes <= 100){
+            validChoice = true;
         } else {
             alert('Value must be between 1 and 100')
         }
     }
-    
-    let child = mainContainer.lastElementChild;
-    while (child) {
-        mainContainer.removeChild(child);
-        child = mainContainer.lastElementChild;
-    }
-    buildBoard(new_res);
-})
+    resizeBoard(newRes);
+
+});
 
